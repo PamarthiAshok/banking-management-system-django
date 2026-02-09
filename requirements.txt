@@ -1,0 +1,10 @@
+asgiref==3.11.0
+diff-match-patch==20241021
+Django==6.0
+django-import-export==4.3.14
+pillow==12.1.0
+psycopg2==2.9.11
+python-dotenv==1.2.1
+sqlparse==0.5.4
+tablib==3.9.0
+tzdata==2025.3
