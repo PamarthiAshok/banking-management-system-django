@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Account Transfer</title>
+
+    <link rel="stylesheet" href="{% static 'accounts/css/account_transfer.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/css/animations.css' %}">
+</head>
+
+<body>
+
+    <div id="account_transfer_container">
+        <h1 id="account_transfer_heading">Account Transfer</h1>
+
+        <!-- ================= FORM ================= -->
+        {% if not success %}
+        <form method="post" id="transfer_form">
+            {% csrf_token %}
+
+            <div class="account_transfer_form_group">
+                <label>Sender Account Number</label>
+                <input type="text" name="account_number_sender" placeholder="123XXXXXXXX" required>
+            </div>
+
+            <div class="account_transfer_form_group">
+                <label>Receiver Account Number</label>
+                <input type="text" name="account_number_reciver" placeholder="123XXXXXXXX" required>
+            </div>
+
+            <div class="account_transfer_form_group">
+                <label>Transaction PIN</label>
+                <input type="password" name="transaction_pin" required>
+            </div>
+
+            <div class="account_transfer_form_group">
+                <label>Transfer Amount</label>
+                <input type="number" name="transfer_amount" min="1" required>
+            </div>
+
+            <button type="submit" id="transfer_button">Transfer Money</button>
+        </form>
+        {% endif %}
+
+        <!-- ================= SUCCESS SCREEN ================= -->
+        {% if success %}
+        <div id="success_overlay">
+            <div id="success_box">
+                <div id="success_circle">✔</div>
+                <p id="success_text">{{ success }}</p>
+                <p id="redirect_text">Transaction Successful<br>Redirecting to Home Page...</p>
+            </div>
+        </div>
+
+        <script>
+            // auto redirect to home after 3 seconds
+            setTimeout(function () {
+                window.location.href = "/";
+            }, 3000);
+        </script>
+        {% endif %}
+
+        <!-- ================= ERROR ================= -->
+        {% if message %}
+        <p class="error_message">{{ message }}</p>
+        {% endif %}
+
+    </div>
+
+    <!-- ================= PROCESSING LOADER ================= -->
+    <div id="processing_overlay">
+        <div id="loader_box">
+            <div id="bank_loader"></div>
+            <p id="processing_text">FinTrust Bank is processing your transfer...</p>
+        </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const form = document.getElementById("transfer_form");
+            const overlay = document.getElementById("processing_overlay");
+            const button = document.getElementById("transfer_button");
+
+            if (form) {
+                form.addEventListener("submit", function () {
+
+                    // show loader
+                    overlay.style.display = "flex";
+
+                    // disable button
+                    button.disabled = true;
+                    button.innerText = "Processing...";
+
+                });
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>

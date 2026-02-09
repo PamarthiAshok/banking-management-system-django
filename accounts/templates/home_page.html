@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FinTrust Bank | Home</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/home_page.css' %}">
+</head>
+
+<body>
+
+    <div id="fintrust_bank_homepage_container">
+
+        <!-- Navbar -->
+        <div id="fintrust_bank_navbar_container">
+            <img src="{% static 'accounts/images/fintrust_logo.png' %}" alt="FinTrust Bank Logo"
+                id="fintrust_bank_logo">
+            <h1 id="fintrust_bank_heading">FinTrust Bank</h1>
+        </div>
+        
+        {% if latest_account %}
+        <div id="account_info_box">
+            <p class="welcome_message">
+                Welcome, <strong>{{ latest_account.full_name }}</strong>
+            </p>
+
+            <p class="account_number_display">
+                Your Account Number:
+                <strong>{{ latest_account.display_account_number }}</strong>
+            </p>
+
+            <p class="balance_display">
+                Current Balance:
+                ₹ {{ latest_account.account_balance }}
+            </p>
+        </div>
+        {% endif %}
+
+        <!-- Account Operations -->
+        <div id="fintrust_bank_account_operations_container">
+
+            <!-- TOP ROW -->
+            <div class="fintrust_bank_account_operations">
+
+                <a href="{% url 'create_account' %}" class="fintrust_bank_operation_item fintrust_clickable">
+                    <img src="{% static 'accounts/images/create_account.png' %}" class="fintrust_bank_images">
+                    <span class="fintrust_bank_label">Create Account</span>
+                </a>
+
+                <a href="{% url 'pin_generation' %}" class="fintrust_bank_operation_item fintrust_clickable">
+                    <img src="{% static 'accounts/images/pin_generation.png' %}" class="fintrust_bank_images">
+                    <span class="fintrust_bank_label">PIN Generation</span>
+                </a>
+
+                <a href="{% url 'check_balance' %}" class="fintrust_bank_operation_item fintrust_clickable">
+                    <img src="{% static 'accounts/images/check_balance.png' %}" class="fintrust_bank_images">
+                    <span class="fintrust_bank_label">Check Balance</span>
+                </a>
+
+            </div>
+
+            <!-- BOTTOM ROW -->
+            <div class="fintrust_bank_account_operations">
+
+                <a href="{% url 'deposit' %}" class="fintrust_bank_operation_item fintrust_clickable">
+                    <img src="{% static 'accounts/images/deposit.png' %}" class="fintrust_bank_images">
+                    <span class="fintrust_bank_label">Deposit</span>
+                </a>
+
+                <a href="{% url 'withdrawal' %}" class="fintrust_bank_operation_item fintrust_clickable">
+                    <img src="{% static 'accounts/images/withdrawal.png' %}" class="fintrust_bank_images">
+                    <span class="fintrust_bank_label">Withdrawal</span>
+                </a>
+
+                <a href="{% url 'account_transfer' %}" class="fintrust_bank_operation_item fintrust_clickable">
+                    <img src="{% static 'accounts/images/account_transfer.png' %}" class="fintrust_bank_images">
+                    <span class="fintrust_bank_label">Account Transfer</span>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

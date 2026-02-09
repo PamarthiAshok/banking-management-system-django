@@ -1,0 +1,118 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Main Card */
+#account_transfer_container {
+    width: 400px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px lightgray;
+}
+
+/* Heading */
+#account_transfer_heading {
+    text-align: center;
+    margin-bottom: 25px;
+    color: steelblue;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* Form group */
+.account_transfer_form_group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+/* Labels */
+.account_transfer_form_group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: dimgray;
+}
+
+/* Inputs */
+.account_transfer_form_group input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid gainsboro;
+    font-size: 14px;
+}
+
+/* Input focus effect */
+.account_transfer_form_group input:focus {
+    outline: none;
+    border-color: steelblue;
+    box-shadow: 0 0 4px lightblue;
+}
+
+/* Transfer Button */
+button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: steelblue;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: lightskyblue;
+}
+
+/* Success message */
+.success_message {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: seagreen;
+}
+
+/* Error message */
+.error_message {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: crimson;
+}
+
+/* Back Home Button */
+.back_home_button {
+    display: block;
+    margin-top: 18px;
+    text-align: center;
+    padding: 11px;
+    border-radius: 10px;
+    background-color: steelblue;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.back_home_button:hover {
+    background-color: lightskyblue;
+}

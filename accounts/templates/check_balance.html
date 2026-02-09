@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Balance</title>
+
+    <link rel="stylesheet" href="{% static 'accounts/css/check_balance.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/css/animations.css' %}">
+</head>
+
+<body>
+
+    <div id="balance_check_container">
+
+        <h1 id="check_balance_heading">Check Balance</h1>
+
+        <!-- FORM (ONLY BEFORE SUCCESS) -->
+        {% if not balance %}
+        <form method="post" id="balance_form">
+            {% csrf_token %}
+
+            <div class="check_balance_validations">
+                <label>Account Number</label>
+                <input type="text" name="account_number" required>
+            </div>
+
+            <div class="check_balance_validations">
+                <label>Enter Your PIN</label>
+                <input type="password" name="transaction_pin" required>
+            </div>
+
+            <button type="submit" id="check_btn">Check</button>
+        </form>
+        {% endif %}
+
+
+        <!-- SUCCESS SCREEN -->
+        {% if balance %}
+        <div id="success_box">
+            <div id="tick_circle">✔</div>
+            <p id="success_title">Balance Retrieved Successfully</p>
+            <p id="balance_amount">₹ {{ balance }}</p>
+            <p id="redirect_message">Redirecting to home page...</p>
+        </div>
+
+        <!-- MINI STATEMENT BUTTON -->
+
+        <a href="{% url 'transactions' %}" class="mini_btn">View Mini Statement</a>
+
+        <script>
+            setTimeout(function () {
+                window.location.href = "/";
+            }, 6000);
+        </script>
+        {% endif %}
+
+
+        <!-- ERROR -->
+        {% if message %}
+        <p class="message error_message">
+            {{ message }}
+        </p>
+        {% endif %}
+
+    </div>
+
+
+    <!-- PROCESSING LOADER -->
+    <div id="processing_overlay">
+        <div id="loader_box">
+            <div id="bank_loader"></div>
+            <p id="processing_text">Fetching account details...</p>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const form = document.getElementById("balance_form");
+            const overlay = document.getElementById("processing_overlay");
+            const button = document.getElementById("check_btn");
+
+            if (form) {
+                form.addEventListener("submit", function () {
+                    overlay.style.display = "flex";
+                    button.disabled = true;
+                    button.innerText = "Checking...";
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

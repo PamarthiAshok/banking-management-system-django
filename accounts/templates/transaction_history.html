@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mini Statement</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/transaction_history.css' %}">
+</head>
+
+<body>
+
+    <div id="transaction_container">
+        <h1>Mini Statement</h1>
+
+        {% if message %}
+        <p class="error_message">{{ message }}</p>
+        {% endif %}
+
+        {% if transactions %}
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Balance After</th>
+            </tr>
+
+            {% for t in transactions %}
+            <tr>
+                <td>{{ t.created_at|date:"d M Y, h:i A" }}</td>
+                <td>{{ t.transaction_type }}</td>
+                <td>₹ {{ t.amount }}</td>
+                <td>₹ {{ t.balance_after_transaction }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+
+        <a href="{% url 'home' %}" class="back_home">Back to Home</a>
+    </div>
+
+</body>
+
+</html>

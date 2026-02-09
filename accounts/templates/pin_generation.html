@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PIN Generation</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/pin_generation.css' %}">
+</head>
+<body>
+
+<div class="pin_generation_container">
+    <h1>Generate PIN</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="form_group">
+            <label>Account Number</label>
+            <input type="text" name="account_number" required>
+        </div>
+
+        <div class="form_group">
+            <label>Registered Mobile Number</label>
+            <input type="text" name="phone_number" required>
+        </div>
+
+        <button type="submit">Send OTP</button>
+    </form>
+
+    {% if message %}
+        <div class="message">{{ message }}</div>
+    {% endif %}
+</div>
+
+</body>
+</html>

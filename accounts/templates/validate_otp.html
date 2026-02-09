@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validate OTP</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/validate_otp.css' %}">
+
+</head>
+
+<body>
+    <div id="validate_otp_container">
+        <h1 id="validate_otp_heading">Validate OTP</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="validate_form_validations">
+                <label for="">Enter OTP</label>
+                <input type="text" name="entered_otp" id="" required>
+            </div>
+            <div class="validate_form_validations">
+                <label for="">New PIN</label>
+                <input type="password" name="new_pin" id="" required>
+            </div>
+            <div class="validate_form_validations">
+                <label for="">Confirm PIN</label>
+                <input type="password" name="confirm_pin" id="" required>
+            </div>
+            <button type="submit">Set PIN</button>
+        </form>
+        <div class="resend_otp_container">
+            <a href="{% url 'resend_otp' %}" class="resend_otp_link">Resend OTP</a>
+        </div>
+
+
+        {% if message %}
+        <div id="error_message">{{message}}</div>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

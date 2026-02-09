@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Account</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/create_account.css' %}">
+</head>
+<body>
+
+<div class="create-account-container">
+    <h1>Create Account</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Account</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+#validate_otp_container {
+    width: 380px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px lightgray;
+}
+
+#validate_otp_heading {
+    text-align: center;
+    margin-bottom: 20px;
+    color: steelblue;
+    font-size: 22px;
+}
+
+.validate_form_validations {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 500;
+    color: dimgray;
+}
+
+input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid gainsboro;
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none;
+    border-color: steelblue;
+}
+
+button {
+    margin-top: 10px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: steelblue;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: lightskyblue;
+}
+
+#error_message {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 14px;
+    color: crimson;
+    font-weight: 500;
+}
+.resend_otp_container {
+    margin-top: 14px;
+    text-align: center;
+}
+
+.resend_otp_link {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: steelblue;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.resend_otp_link:hover {
+    background-color: aliceblue;
+    color: steelblue;
+}
+

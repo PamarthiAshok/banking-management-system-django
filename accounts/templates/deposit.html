@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Deposit Money</title>
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="{% static 'accounts/css/deposit.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/css/animations.css' %}">
+</head>
+
+<body>
+
+    <div id="deposit_container">
+
+        <h1 id="deposit_heading">Deposit Money</h1>
+
+        <!-- FORM (only show when success not happened) -->
+        {% if not success %}
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="deposit_money_validations">
+                <label>Account Number</label>
+                <input type="text" name="account_number" placeholder="123XXXXXXXX" required>
+            </div>
+
+            <div class="deposit_money_validations">
+                <label>Transaction PIN</label>
+                <input type="password" name="transaction_pin" required>
+            </div>
+
+            <div class="deposit_money_validations">
+                <label>Deposit Amount (Minimum ₹100)</label>
+                <input type="number" name="deposit_amount" min="100" step="0.01" required>
+            </div>
+
+            <button type="submit" id="deposit_btn">Deposit</button>
+        </form>
+        {% endif %}
+
+
+        <!-- ERROR MESSAGE -->
+        {% if message %}
+        <p class="error_message">{{ message }}</p>
+        {% endif %}
+
+
+        <!-- PROCESSING LOADER -->
+        <div id="processing_overlay">
+            <div id="loader_box">
+                <div id="bank_loader"></div>
+                <p id="processing_text">FinTrust Bank is processing your request...</p>
+            </div>
+        </div>
+
+
+        <!-- SUCCESS ANIMATION -->
+        {% if success %}
+        <div id="success_overlay">
+            <div id="success_box">
+
+                <div id="success_circle">
+                    ✓
+                </div>
+
+                <p id="success_text">{{ success }}</p>
+                <p id="redirect_text">Redirecting to Home...</p>
+
+            </div>
+        </div>
+
+        <script>
+            setTimeout(function () {
+                window.location.href = "{% url 'home' %}";
+            }, 20000);
+        </script>
+        {% endif %}
+
+    </div>
+
+
+    <!-- PROCESSING SCRIPT -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const form = document.querySelector("form");
+            const overlay = document.getElementById("processing_overlay");
+            const button = document.getElementById("deposit_btn");
+
+            // ALWAYS hide loader when page loads
+            overlay.style.display = "none";
+
+            if (form) {
+                form.addEventListener("submit", function () {
+
+                    // show processing loader
+                    overlay.style.display = "flex";
+
+                    // prevent double deposit click
+                    button.disabled = true;
+                    button.innerText = "Processing...";
+
+                });
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>

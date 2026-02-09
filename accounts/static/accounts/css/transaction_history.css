@@ -1,0 +1,49 @@
+body{
+    background: whitesmoke;
+    font-family: Arial;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+#transaction_container{
+    width:700px;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 25px lightgray;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+    color:steelblue;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:10px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+th{
+    background:steelblue;
+    color:white;
+}
+
+.back_home{
+    display:block;
+    margin-top:20px;
+    text-align:center;
+    padding:10px;
+    background:steelblue;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+}
